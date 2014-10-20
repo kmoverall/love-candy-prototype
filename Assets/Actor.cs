@@ -5,10 +5,13 @@ using System.Collections.Generic;
 public class Actor : MonoBehaviour {
     public Vector2 gamePosition;
 
+    public Sprite sprite1;
+
     protected Level level;
     protected enum State {STANDING, WALKING, ACTING};
     protected State actorState;
     protected Vector3 walkTarget; //Location in world coordinates that Actor is moving towards
+
     public Vector2 facing;
     public float moveSpeed; //moveSpeed in Tiles/Second
 
@@ -60,6 +63,5 @@ public class Actor : MonoBehaviour {
     }
 
     protected void OnMouseUpAsButton() {
-        level.MapObjectClicked(this);
     }
 }

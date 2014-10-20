@@ -24,6 +24,6 @@ public class Tile : MonoBehaviour {
     }
 
     void OnMouseUpAsButton() {
-        level.MapObjectClicked(this);
+        level.TileClicked(this);
     }
 }

@@ -4,9 +4,12 @@ using System.Collections;
 public class PlayerActor : Actor {
     public bool playerActive;
 
+    public Sprite selectedSprite;
+
 	// Update is called once per frame
 	new void Update () {
         base.Update();
+
         switch(actorState) {
             case State.STANDING:
                 if (Input.GetKey("s") && playerActive) {
@@ -44,5 +47,12 @@ public class PlayerActor : Actor {
         if (Input.GetKeyDown("left shift")) {
             playerActive = !playerActive;
         }
-	}
+
+        if (playerActive) {
+            GetComponent<SpriteRenderer>().sprite = selectedSprite;
+            level.activePlayer = this;
+        } else {
+            GetComponent<SpriteRenderer>().sprite = sprite1;
+        }
+    }
 }

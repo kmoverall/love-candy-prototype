@@ -101,6 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f243b709a54524a9f74bf283b772bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activePlayer: {fileID: 0}
+  debugMarker: {fileID: 100000, guid: 7762d04d73d1a26429ac161977e9b80d, type: 2}
   tiles:
   - {fileID: 100000, guid: 8042802312fd22040be71970f429290a, type: 2}
   - {fileID: 100000, guid: ddf6615293c16a540a786bb1182e8e9c, type: 2}
@@ -364,6 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePosition: {x: 6, y: 1}
+  sprite1: {fileID: 21300000, guid: e71a2d67cac4f5c429d63cebaa3a1668, type: 3}
   facing: {x: 0, y: 1}
   moveSpeed: 1.5
 --- !u!1001 &1114616205
@@ -596,9 +599,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePosition: {x: 7, y: 3}
+  sprite1: {fileID: 21300000, guid: 4e7dbd7fe4f7c2945b80413d5b83fe20, type: 3}
   facing: {x: 0, y: 1}
   moveSpeed: 2
   playerActive: 0
+  selectedSprite: {fileID: 21300000, guid: 8298b15893f50a34194bbbab20142979, type: 3}
 --- !u!1 &1707313360
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,9 +682,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePosition: {x: 6, y: 3}
+  sprite1: {fileID: 21300000, guid: 4e7dbd7fe4f7c2945b80413d5b83fe20, type: 3}
   facing: {x: 0, y: 1}
   moveSpeed: 2
   playerActive: 1
+  selectedSprite: {fileID: 21300000, guid: 8298b15893f50a34194bbbab20142979, type: 3}
 --- !u!1 &1708242009
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,6 +753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePosition: {x: 3, y: 7}
+  sprite1: {fileID: 21300000, guid: 60a4aca0c99927149b64ce737f1883c0, type: 3}
   facing: {x: 0, y: 1}
   moveSpeed: 2
 --- !u!61 &1708242014
@@ -826,6 +834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePosition: {x: 2, y: 7}
+  sprite1: {fileID: 21300000, guid: 60a4aca0c99927149b64ce737f1883c0, type: 3}
   facing: {x: 0, y: 1}
   moveSpeed: 2
 --- !u!61 &1724853579
@@ -918,6 +927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePosition: {x: 6, y: 0}
+  sprite1: {fileID: 21300000, guid: e71a2d67cac4f5c429d63cebaa3a1668, type: 3}
   facing: {x: 0, y: 1}
   moveSpeed: 1.5
 --- !u!1001 &1879997502
@@ -983,6 +993,11 @@ Prefab:
       propertyPath: playerActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 21200000, guid: aa0de69f7e6c1544d97e44888d7d9e2b, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4e7dbd7fe4f7c2945b80413d5b83fe20,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa0de69f7e6c1544d97e44888d7d9e2b, type: 2}
   m_RootGameObject: {fileID: 1707313360}
