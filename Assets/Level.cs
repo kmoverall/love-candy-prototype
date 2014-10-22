@@ -47,12 +47,8 @@ public class Level : MonoBehaviour {
 	}
 
     public void TileClicked (Tile clickedTile) {
-        double startTime = Time.realtimeSinceStartup;
         List<Vector2> path = AStarSearch(activePlayer.gamePosition, clickedTile.gamePosition);
-        Debug.Log(Time.realtimeSinceStartup - startTime);
-        foreach (Vector2 v in path) {
-            Instantiate(debugMarker, FindWorldPosition(v), Quaternion.identity);
-        }
+        activePlayer.walkPath = path;
     }
 
     //Finds the GamePosition based on its WorldPosition
@@ -98,7 +94,7 @@ public class Level : MonoBehaviour {
         neighbors.Add(GetAdjacentTile(gpos, Vector2.right * -1));
 
         foreach (GameObject g in neighbors) {
-            if (g != null && g.GetComponent<Tile>().type != Tile.TileType.WALL) {
+            if (g != null && (g.GetComponent<Tile>().type == Tile.TileType.FLOOR || g.GetComponent<Tile>().type == Tile.TileType.OPENDOOR)) {
                 result.Add(g);
             }
         }
@@ -142,11 +138,14 @@ public class Level : MonoBehaviour {
             }
         }
 
-        path.Add(goal);
-        Vector2 pathCurrent = goal;
-        while(pathCurrent != start) {
-            pathCurrent = cameFrom[pathCurrent];
+        //If goal is reachable from start
+        if (cameFrom.ContainsKey(goal)) {
+            Vector2 pathCurrent = goal;
             path.Add(pathCurrent);
+            while(pathCurrent != start) {
+                pathCurrent = cameFrom[pathCurrent];
+                path.Add(pathCurrent);
+            }
         }
 
         return path;

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Tile : MonoBehaviour {
     public Vector2 gamePosition;
-    public enum TileType {FLOOR, WALL, DOOR, EMPTY};
+    public enum TileType {FLOOR, WALL, DOOR, OPENDOOR, EMPTY};
     public TileType type;
     private Level level;
 

@@ -15,7 +15,7 @@ public class Actor : MonoBehaviour {
     public Vector2 facing;
     public float moveSpeed; //moveSpeed in Tiles/Second
 
-    protected Dictionary<Vector2, Vector2> walkPath;
+    public List<Vector2> walkPath; //Stores a list of game locations denoting the actor's current path, with 0 being the end and Count-1 being the beginning
 
 	// Use this for initialization
     protected void Start () {
@@ -24,7 +24,7 @@ public class Actor : MonoBehaviour {
         if (facing == Vector2.zero) {
             facing = -1 * Vector2.up;
         }
-        walkPath = new Dictionary<Vector2, Vector2>();
+        walkPath = new List<Vector2>();
     }
 
 	// Update is called once per frame
@@ -32,6 +32,12 @@ public class Actor : MonoBehaviour {
         switch (actorState) {
             case State.STANDING:
                 gameObject.transform.position = level.FindWorldPosition(gamePosition);
+                if(walkPath.Count != 0) {
+                    //Removes the last vector in WalkPath, converts it to a World Location, and passes it to walkTarget
+                    walkTarget = level.FindWorldPosition(walkPath[walkPath.Count - 1]);
+                    walkPath.RemoveAt(walkPath.Count - 1);
+                    actorState = State.WALKING;
+                }
                 break;
             case State.WALKING:
                 Move();
