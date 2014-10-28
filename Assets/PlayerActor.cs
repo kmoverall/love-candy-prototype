@@ -10,36 +10,51 @@ public class PlayerActor : Actor {
 	new void Update () {
         base.Update();
 
-        switch(actorState) {
+        switch(actorState.Peek()) {
             case State.STANDING:
+                //Keyboard movement
                 if (Input.GetKey("s") && playerActive) {
                     facing = Vector2.up;
                     if (checkCollision()) {
                         walkTarget.x = gameObject.transform.position.x;
                         walkTarget.y = gameObject.transform.position.y - level.TileSize;
-                        actorState = State.WALKING;
+                        actorState.Push(State.WALKING);
+                        walkPath.Clear();
                     }
                 } else if (Input.GetKey("w") && playerActive) {
                     facing = -1 * Vector2.up;
                     if (checkCollision()) {
                         walkTarget.x = gameObject.transform.position.x;
                         walkTarget.y = gameObject.transform.position.y + level.TileSize;
-                        actorState = State.WALKING;
+                        actorState.Push(State.WALKING);
+                        walkPath.Clear();
                     }
                 } else if (Input.GetKey("a") && playerActive) {
                     facing = -1 * Vector2.right;
                     if (checkCollision()) {
                         walkTarget.x = gameObject.transform.position.x - level.TileSize;
                         walkTarget.y = gameObject.transform.position.y;
-                        actorState = State.WALKING;
+                        actorState.Push(State.WALKING);
+                        walkPath.Clear();
                     }
                 } else if (Input.GetKey("d") && playerActive) {
                     facing = Vector2.right;
                     if (checkCollision()) {
                         walkTarget.x = gameObject.transform.position.x + level.TileSize;
                         walkTarget.y = gameObject.transform.position.y;
-                        actorState = State.WALKING;
+                        actorState.Push(State.WALKING);
+                        walkPath.Clear();
                     }
+                }
+                break;
+
+            case State.WALKING:
+                //Checks for doors that need to be opened
+                Vector2 gameTarget = level.FindGamePosition(walkTarget);
+                Door checkDoor = level.mapTiles[(int)(gameTarget.y), (int)(gameTarget.x)].GetComponent<Door>();
+                if (checkDoor != null && !checkDoor.isOpen) {
+                    actionTarget = checkDoor.gameObject;
+                    actorState.Push(State.ACTING);
                 }
                 break;
         }

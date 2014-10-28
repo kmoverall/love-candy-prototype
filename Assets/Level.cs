@@ -6,7 +6,7 @@ using System.Linq;
 public class Level : MonoBehaviour {
 
 	private int[,] map;
-    private GameObject[,] mapTiles;                     //Array holding all tiles that make up the map
+    public GameObject[,] mapTiles;                     //Array holding all tiles that make up the map
     private const int mapWidth = 16;
     private const int mapHeight = 10;
     public PlayerActor activePlayer;
@@ -94,7 +94,7 @@ public class Level : MonoBehaviour {
         neighbors.Add(GetAdjacentTile(gpos, Vector2.right * -1));
 
         foreach (GameObject g in neighbors) {
-            if (g != null && (g.GetComponent<Tile>().type == Tile.TileType.FLOOR || g.GetComponent<Tile>().type == Tile.TileType.OPENDOOR)) {
+            if (g != null && (g.GetComponent<Tile>().type != Tile.TileType.WALL)) {
                 result.Add(g);
             }
         }

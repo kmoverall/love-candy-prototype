@@ -7,13 +7,13 @@ public class Tile : MonoBehaviour {
     public TileType type;
     private Level level;
 
-    Tile() {
+    protected Tile() {
         gamePosition.x = 0;
         gamePosition.y = 0;
         type = TileType.EMPTY;
     }
 
-    Tile(int xin, int yin, TileType t) {
+    public Tile(int xin, int yin, TileType t) {
         gamePosition.x = xin;
         gamePosition.y = yin;
         type = t;
@@ -26,4 +26,9 @@ public class Tile : MonoBehaviour {
     void OnMouseUpAsButton() {
         level.TileClicked(this);
     }
+
+    //Returns the amount of time left in the action
+    public double Interact() { 
+        Debug.Log("Interacting with Tile");
+        return 0; }
 }
